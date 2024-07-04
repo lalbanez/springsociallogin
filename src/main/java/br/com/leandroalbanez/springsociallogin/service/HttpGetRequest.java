@@ -20,12 +20,24 @@ import oauth.signpost.exception.OAuthMessageSignerException;
 
 public class HttpGetRequest {
 
-	
-	public static String demo (String uri) throws IOException {
-		return demo(uri, "", "");		
+	public static String returnAuthTokenUrl() throws IOException {
+		String uri = "https://api.twitter.com/oauth/request_token?oauth_callback=%s";
+		uri = String.format(uri, "http%3A%2F%2Flocalhost%3A8080%2Fcallback");
+		String retornoApi = HttpGetRequest.getAssinatura(uri);
+		
+		String[] params = retornoApi.split("&");
+		String authToken = params[0];
+		String urlToken = "https://api.twitter.com/oauth/authorize?oauth_token=" + authToken.split("=")[1];
+		
+		return urlToken;
 	}
 	
-	public static String demo(String uri, String access_token, String access_secret) throws IOException {
+	
+	public static String getAssinatura (String uri) throws IOException {
+		return getAssinatura(uri, "", "");		
+	}
+	
+	public static String getAssinatura(String uri, String access_token, String access_secret) throws IOException {
 		if(access_token.equals("") && access_secret.equals("")) {
 			access_token = "73184573-s0SCHTHrJ8RGZnfdkf9pYD8HX96cycsFfW2lpqYSf";
 			access_secret = "16O13hMnQFvRRc15XXilaB65qEZjWeUFScF0FuqRxHzAd";
@@ -58,11 +70,4 @@ public class HttpGetRequest {
 		
 	}
 
-	public static void main(String[] args) {
-		try {
-			demo(args[0]);
-		} catch (IOException ioe) {
-			System.out.println(ioe);
-		}
-	}
 }

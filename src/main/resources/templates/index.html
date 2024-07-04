@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twitter ISG</title>
+<link rel="stylesheet" th:href="@{/styles/estilo.css}">
+
+</head>
+<body>
+	<div class="header">
+		<h1 class="logo">
+			Junte-se ao Projeto Inkluzen Individual no <span>Twitter</span>
+			<p />
+			<img th:src="@{/images/logo-horizontal-03.png}" alt="">
+		</h1>
+	</div>
+
+	<div class="container">
+		<p>O Projeto Inkluzen Individual permite a você, usuário do X
+			(antigo Twitter), a condição de realizar uma autoavaliação
+			psicossocial, mostrando somente a você este resultado.</p>
+
+		<p>Para realizá-la, você deve fazer uma autorização de acesso aos
+			seus dados no X, clicando no link de login abaixo.</p>
+		<a th:href="${urlTwitter}"> 
+			<img th:src="@{/images/logo_x.jpeg}" />
+		</a>
+
+		<p>Ao concordar com essa avaliação, saiba que seus dados não serão
+			utilizados para outros fins, nem repassados a terceiros conforme a
+			LGPD.</p>
+	</div>
+</body>
+</html>
